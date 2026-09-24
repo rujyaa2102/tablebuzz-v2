@@ -1,0 +1,14 @@
+Options -Indexes
+
+<FilesMatch "^\.env($|\.|local$|production$)">
+    Require all denied
+</FilesMatch>
+
+RedirectMatch 404 /\.git
+
+RedirectMatch 404 ^/(app|database|terraform|k8s|docker|nginx)(/|$)
+RedirectMatch 404 ^/storage(/|$)
+
+<FilesMatch "\.(bak|backup|old|orig|save|sql|log|ini|conf|dist)$">
+    Require all denied
+</FilesMatch>
