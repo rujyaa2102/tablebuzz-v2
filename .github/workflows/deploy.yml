@@ -13,5 +13,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Deployment started
-        run: echo "TableBuzz deployment started"
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ec2-user
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            cd ~/tablebuzz-v2
+            git pull origin main
+            docker compose build
+            docker compose up -d
+            docker compose ps
