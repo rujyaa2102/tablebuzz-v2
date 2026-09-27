@@ -1,0 +1,29 @@
+services:
+  app:
+    build: .
+    container_name: tablebuzz-app
+    ports:
+      - "80:80"
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_NAME: tablebuzz_db
+      DB_USER: tablebuzz_user
+      DB_PASSWORD: tablebuzz_password
+    restart: unless-stopped
+
+  db:
+    image: mysql:8.0
+    container_name: tablebuzz-db
+    environment:
+      MYSQL_DATABASE: tablebuzz_db
+      MYSQL_USER: tablebuzz_user
+      MYSQL_PASSWORD: tablebuzz_password
+      MYSQL_ROOT_PASSWORD: root_password_change_me
+    volumes:
+      - mysql_data:/var/lib/mysql
+    restart: unless-stopped
+
+volumes:
+  mysql_data:

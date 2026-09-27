@@ -3,7 +3,7 @@
 $host = $_ENV['DB_HOST'] ?? 'localhost';
 $db   = $_ENV['DB_NAME'] ?? 'tablebuzz_db';
 $user = $_ENV['DB_USER'] ?? 'root';
-$pass = $_ENV['DB_PASS'] ?? '';
+$pass = $_ENV['DB_PASSWORD'] ?? '';
 
 try {
 
